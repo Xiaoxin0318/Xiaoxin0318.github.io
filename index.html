@@ -58,6 +58,7 @@ body {
 /* ── Background Canvas ── */
 #bg-canvas {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  will-change: transform;
 }
 
 /* ── Ambient Orbs ── */
@@ -489,7 +490,7 @@ body {
     <ul class="sidebar-nav" id="sideNav">
       <li><a href="#about" class="active"><span class="nav-dot"></span> 关于我</a></li>
       <li><a href="#education"><span class="nav-dot"></span> 教育背景</a></li>
-      <li><a href="#experience"><span class="nav-dot"></span> 实习经历</a></li>
+      <li><a href="#experience"><span class="nav-dot"></span> 工作经历</a></li>
       <li><a href="#projects"><span class="nav-dot"></span> 项目经验</a></li>
       <li><a href="#awards"><span class="nav-dot"></span> 获奖荣誉</a></li>
       <li><a href="#skills"><span class="nav-dot"></span> 技能特长</a></li>
@@ -504,18 +505,18 @@ body {
   <!-- About -->
   <section class="section reveal" id="about">
     <div class="section-inner">
-      <div class="hero-badge"><span class="hero-badge-dot"></span> Unity开发 · 3D建模</div>
+      <div class="hero-badge"><span class="hero-badge-dot"></span> Unity开发 · 3D建模 · AI赋能</div>
       <h1 class="hero-name">雷新钰<span class="highlight">.</span></h1>
-      <p class="hero-title">Unity应用开发工程师 · 3D建模设计师 · VR/AR 内容创作者</p>
+      <p class="hero-title">AI创新赋能 · Unity开发工程师 · VR/AR 内容创作者</p>
       <p class="hero-desc">
-        软件技术专业，擅长 Unity 开发与 3D 建模。拥有丰富的 VR/AR 项目开发经验，主导多个省级获奖项目。
-        熟练运用 Unity3D、3ds Max、C# 等技术栈，具备项目管理与团队协作能力。
+        软件技术专业，3年工作经验。擅长 Unity 开发与 3D 建模，主导多个省级获奖 VR/AR 项目。
+        深度使用 AI 工具提升团队效率，具备项目管理、团队领导与企业创办经验。拥有 15 项计算机软件著作权。
       </p>
       <div class="hero-meta">
-        <div class="hero-stat"><div class="val">21</div><div class="lbl">岁 · 浙江温州</div></div>
+        <div class="hero-stat"><div class="val">23</div><div class="lbl">岁 · 浙江温州</div></div>
         <div class="hero-stat"><div class="val">45</div><div class="lbl">项获奖荣誉</div></div>
-        <div class="hero-stat"><div class="val">7</div><div class="lbl">项软件著作权</div></div>
-        <div class="hero-stat"><div class="val">7</div><div class="lbl">家媒体报道</div></div>
+        <div class="hero-stat"><div class="val">15</div><div class="lbl">项软件著作权</div></div>
+        <div class="hero-stat"><div class="val">3年</div><div class="lbl">工作经验</div></div>
       </div>
       <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
     </div>
@@ -533,8 +534,8 @@ body {
           <p style="margin-bottom:10px"><strong>主修课程：</strong>Unity3D开发、3ds Max模型设计、C# WinForm、MySQL、Python、安卓移动应用开发</p>
           <p style="margin-bottom:8px"><strong>荣誉称号：</strong></p>
           <ul>
-            <li>学校「技能之星」「创新创业之星」「青年五四奖章」</li>
-            <li>两次校一等奖学金、省政府奖学金</li>
+            <li>优秀毕业生 · 学校「技能之星」「创新创业之星」「青年五四奖章」</li>
+            <li>多次获校一等奖学金、省政府奖学金</li>
             <li>优秀学生、优秀学生干部等称号，累计获奖荣誉 45 项</li>
           </ul>
         </div>
@@ -564,22 +565,46 @@ body {
   <section class="section" id="experience">
     <div class="section-inner">
       <div class="section-label">// Experience</div>
-      <h2 class="section-heading">实习经历</h2>
+      <h2 class="section-heading">工作经历</h2>
       <div class="timeline">
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2026.04 — 至今</div>
+          <div class="tl-role">AI创新赋能部部长 / VR项目制作 / 授课</div>
+          <div class="tl-org">杭州市西湖区自在公益影像传播发展中心</div>
+          <div class="tl-desc">
+            主要负责公司AI化升级赋能，主导「杭州市青年史馆AI/VR数字化赋能」与「杭州市VR全景养老地图」项目。
+          </div>
+        </div>
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2025.08 — 2026.04</div>
+          <div class="tl-role">技术部总监</div>
+          <div class="tl-org">安吉数元健康科技有限公司</div>
+          <div class="tl-desc">
+            负责公司产品数据化展示，主导搭建健康质询服务系统。
+          </div>
+        </div>
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2024.08 — 2025.08</div>
+          <div class="tl-role">VR项目经理 / 后期 / 拍摄 / 授课</div>
+          <div class="tl-org">杭州自在空间文化艺术有限公司 / 善因(杭州)科技文化有限责任公司</div>
+          <div class="tl-desc">
+            影像主创：参与打造全球首部尘肺病公益VR影片《大爱清尘》。受聘ASDAN虚拟现实项目、狮子会公益项目、九阳教育项目专职培训讲师。负责百度智能云、阿里云官方短视频账号全流程剪辑运维。主创杭州市百岁老人纪实VR影像、「气候印迹-皖南古建文旅VR」、定制VR短剧《穿书后霸道总裁宠我上瘾》等项目。
+          </div>
+        </div>
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2024.03 — 2024.08</div>
+          <div class="tl-role">开发工程师 / 课程开发与培训专员</div>
+          <div class="tl-org">浙江楚沩互动科技有限公司 / 杭州楚沩教育科技有限公司</div>
+          <div class="tl-desc">
+            编撰中职《数字艺术设计交互课程》专业课程，培训数字艺术、动漫制作、虚拟现实、短视频等职业院校技能大赛项目。被邀请担任<strong>全球金砖国家一带一路世界赛虚拟现实赛项</strong>出题人和技术运维。
+          </div>
+        </div>
         <div class="tl-item glass light-sweep reveal">
           <div class="tl-date">2022.11 — 2024.03</div>
           <div class="tl-role">Unity 应用开发</div>
           <div class="tl-org">湖州畅游科技有限公司</div>
           <div class="tl-desc">
-            主力开发《醉韵千佰 灵境》《黄庭碑摹帖拟书VR》《湖职院录取通知书AR》等项目，参与模型设计与制作。目前个人拥有无人机模拟器、遇上湖职AR软件等 <strong>7 项计算机软件著作权</strong>，CSDN 平台拥有 9 年昵称的账号。
-          </div>
-        </div>
-        <div class="tl-item glass light-sweep reveal">
-          <div class="tl-date">2024.03 — 2024.08</div>
-          <div class="tl-role">课程开发与培训专员</div>
-          <div class="tl-org">浙江楚为互动科技有限公司</div>
-          <div class="tl-desc">
-            编撰中职《数字艺术设计交互课程》专业课程，培训数字艺术、动漫制作、虚拟现实、短视频等职业院校技能大赛项目。被邀请担任<strong>全球金砖国家一带一路世界赛虚拟现实赛项</strong>出题人和技术运维。
+            主力开发《浙韵千宿·灵境》《普陀湖笔模拟书写VR》《湖院录取通知证书AR》等项目，参与模型设计与制作。CSDN平台拥有<strong>10年码龄</strong>账号，个人拥有<strong>15项计算机软件著作权</strong>。
           </div>
         </div>
       </div>
@@ -595,7 +620,7 @@ body {
       <div class="projects-grid reveal-stagger" style="margin-bottom:clamp(10px,1.5vw,16px)">
         <div class="proj-card glass light-sweep">
           <div class="proj-icon">&#9670;</div>
-          <div class="proj-name">醉韵千佰 灵境</div>
+          <div class="proj-name">浙韵千宿·灵境</div>
           <div class="proj-desc">
             项目代码部分主要负责人，代码完全由个人完成。设计了智能中控、智能电视、智能平板、时间切换系统、毛笔书写台等交互功能模块。使用 URP 管线渲染技术设计制作材质，耗时半年完成。
           </div>
@@ -608,42 +633,78 @@ body {
         </div>
         <div class="proj-card glass light-sweep">
           <div class="proj-icon">&#9650;</div>
-          <div class="proj-name">湖职院录取通知书AR</div>
+          <div class="proj-name">大爱清尘 · 尘肺病公益VR影片</div>
           <div class="proj-desc">
-            AR 增强现实项目，将纸质录取通知书与 3D 交互内容结合，扫描即可呈现校园全景与动态迎新内容，提升新生入学体验。
+            全球首部尘肺病公益VR影片，担任影像主创，用沉浸式VR叙事唤起社会对尘肺病群体的关注。
           </div>
           <div class="proj-tags">
-            <span class="proj-tag">AR</span>
-            <span class="proj-tag">Unity</span>
-            <span class="proj-tag">Vuforia</span>
+            <span class="proj-tag">VR影像</span>
+            <span class="proj-tag">公益</span>
+            <span class="proj-tag">后期制作</span>
           </div>
         </div>
         <div class="proj-card glass light-sweep">
           <div class="proj-icon">&#10031;</div>
-          <div class="proj-name">黄庭碑摹帖拟书VR</div>
+          <div class="proj-name">杭州市青年史馆AI/VR数字化赋能</div>
           <div class="proj-desc">
-            虚拟现实书法临摹系统，支持毛笔书写轨迹实时捕捉与笔触还原，用于传统文化数字化教学与体验。
+            AI与VR技术融合应用，对杭州市青年史馆进行数字化升级改造，提升展览交互体验与传播效果。
           </div>
           <div class="proj-tags">
+            <span class="proj-tag">AI</span>
             <span class="proj-tag">VR</span>
-            <span class="proj-tag">Unity</span>
-            <span class="proj-tag">3D交互</span>
+            <span class="proj-tag">数字化</span>
           </div>
         </div>
         <div class="proj-card glass light-sweep">
           <div class="proj-icon">&#9679;</div>
-          <div class="proj-name">无人机模拟器</div>
+          <div class="proj-name">气候印迹 · 皖南古建文旅VR</div>
           <div class="proj-desc">
-            飞行模拟训练软件，支持多场景无人机飞行训练与考核评估。已获得计算机软件著作权。
+            以VR技术记录皖南古建筑风貌，融合气候变迁主题，打造沉浸式文化遗产数字化文旅体验。
           </div>
           <div class="proj-tags">
-            <span class="proj-tag">Unity</span>
-            <span class="proj-tag">模拟器</span>
-            <span class="proj-tag">C#</span>
+            <span class="proj-tag">VR</span>
+            <span class="proj-tag">文旅</span>
+            <span class="proj-tag">古建保护</span>
           </div>
         </div>
         <div class="proj-card glass light-sweep">
           <div class="proj-icon">&#9632;</div>
+          <div class="proj-name">杭州市百岁老人纪实VR影像</div>
+          <div class="proj-desc">
+            以VR全景纪实手法记录杭州百岁老人生活故事，探索VR在人文纪实领域的表达边界。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">VR纪实</span>
+            <span class="proj-tag">人文</span>
+            <span class="proj-tag">全景拍摄</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9660;</div>
+          <div class="proj-name">穿书后霸道总裁宠我上瘾 · VR短剧</div>
+          <div class="proj-desc">
+            定制VR互动短剧，探索VR影视与互动叙事的融合，拓展VR内容创作的新品类。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">VR短剧</span>
+            <span class="proj-tag">互动叙事</span>
+            <span class="proj-tag">影视</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9830;</div>
+          <div class="proj-name">健康质询服务系统</div>
+          <div class="proj-desc">
+            主导搭建公司产品数据化展示与健康质询服务平台，实现数据驱动的健康管理服务。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">系统开发</span>
+            <span class="proj-tag">数据展示</span>
+            <span class="proj-tag">项目管理</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9654;</div>
           <div class="proj-name">数字艺术设计交互课程</div>
           <div class="proj-desc">
             编撰中职专业课程，涵盖数字艺术、动漫制作、虚拟现实等内容，用于职业院校技能大赛培训。
@@ -652,18 +713,6 @@ body {
             <span class="proj-tag">课程开发</span>
             <span class="proj-tag">教学设计</span>
             <span class="proj-tag">VR</span>
-          </div>
-        </div>
-        <div class="proj-card glass light-sweep">
-          <div class="proj-icon">&#9660;</div>
-          <div class="proj-name">遇上湖职AR</div>
-          <div class="proj-desc">
-            校园导览 AR 应用，通过手机扫描校园建筑即可获取导航与信息介绍。已获软件著作权。
-          </div>
-          <div class="proj-tags">
-            <span class="proj-tag">AR</span>
-            <span class="proj-tag">移动应用</span>
-            <span class="proj-tag">Unity</span>
           </div>
         </div>
       </div>
@@ -744,10 +793,10 @@ body {
         <div class="skill-item glass light-sweep"><span class="si-icon">&#9660;</span> MySQL</div>
         <div class="skill-item glass light-sweep"><span class="si-icon">&#9632;</span> Python</div>
         <div class="skill-item glass light-sweep"><span class="si-icon">&#10031;</span> VR/AR 开发</div>
-        <div class="skill-item glass light-sweep"><span class="si-icon">&#9830;</span> URP 渲染</div>
-        <div class="skill-item glass light-sweep"><span class="si-icon">&#9654;</span> Adobe PS/PR/AE</div>
-        <div class="skill-item glass light-sweep"><span class="si-icon">&#9881;</span> 摄影技术</div>
-        <div class="skill-item glass light-sweep"><span class="si-icon">&#9854;</span> 项目管理</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9830;</span> AI 工具应用</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9654;</span> Adobe PS/PR/AE/AU</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9881;</span> 视音频后期</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9854;</span> 团队管理</div>
       </div>
       <div class="edu-card glass light-sweep reveal">
         <h3>证书资质</h3>
@@ -755,7 +804,8 @@ body {
           <ul>
             <li>大数据应用开发（Java）职业技能等级证书（中级）</li>
             <li>计算机视觉架构师（中级）</li>
-            <li>7 项计算机软件著作权</li>
+            <li>15 项计算机软件著作权</li>
+            <li>CSDN 平台 10 年码龄</li>
           </ul>
         </div>
       </div>
@@ -770,9 +820,9 @@ body {
       <h2 class="section-heading">联系方式</h2>
       <div class="contact-row reveal-stagger" style="margin-bottom:clamp(12px,2vw,18px)">
         <a class="contact-chip glass" href="tel:17816321870"><span class="ci">&#9742;</span> 17816321870</a>
-        <a class="contact-chip glass" href="mailto:2876314366@qq.com"><span class="ci">&#9993;</span> 2876314366@qq.com</a>
+        <a class="contact-chip glass" href="mailto:Xiaoxin030318@foxmail.com"><span class="ci">&#9993;</span> Xiaoxin030318@foxmail.com</a>
       </div>
-      <p class="contact-text reveal">籍贯：浙江温州 · 政治面貌：共青团员 · 软件技术专业</p>
+      <p class="contact-text reveal">籍贯：浙江温州 · 政治面貌：共青团员 · 软件技术专业 · 3年工作经验</p>
       <div class="scroll-hint"><span>回到顶部</span><span class="arrow">&#8593;</span></div>
     </div>
   </section>
@@ -783,7 +833,7 @@ body {
 // ── Solar System + Particle Background ──
 (function(){
   const c=document.getElementById('bg-canvas'),ctx=c.getContext('2d');
-  let ps=[],m={x:-200,y:-200},aid,t=0;
+  let ps=[],m={x:-200,y:-200},aid,t=0,visible=true;
   const stars = [];
   const planets = [];
   const meteors = [];
@@ -853,6 +903,7 @@ body {
   }
 
   function rs(){
+    if(aid){cancelAnimationFrame(aid);aid=null;}
     c.width=window.innerWidth;c.height=window.innerHeight;
     const n=Math.min(Math.floor((c.width*c.height)/10000),120);
     ps=Array.from({length:n},()=>{
@@ -1043,6 +1094,7 @@ body {
   }
 
   function dr(){
+    if(!visible){aid=null;return;}
     const tick=Date.now()*0.001;
     const dt=Math.min((tick-(dr._last||tick)),0.1);
     dr._last=tick;
@@ -1081,7 +1133,15 @@ body {
     aid=requestAnimationFrame(dr);
   }
   document.addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
-  window.addEventListener('resize',rs);rs();
+  window.addEventListener('resize',rs);
+  document.addEventListener('visibilitychange',()=>{
+    visible=!document.hidden;
+    if(visible&&!aid){
+      dr._last=0;
+      dr();
+    }
+  });
+  rs();
 })();
 
 // ── Light Sweep ──
