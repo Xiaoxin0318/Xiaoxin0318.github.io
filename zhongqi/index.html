@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ 蒋钟琪 ✨</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink-100: oklch(0.97 0.02 0);
+    --pink-200: oklch(0.92 0.06 0);
+    --pink-300: oklch(0.85 0.12 5);
+    --pink-400: oklch(0.75 0.16 10);
+    --pink-500: oklch(0.62 0.22 15);
+    --pink-600: oklch(0.50 0.24 20);
+    --pink-700: oklch(0.38 0.20 25);
+    --cream: oklch(0.96 0.015 60);
+  }
+
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, oklch(0.93 0.04 0) 0%, oklch(0.88 0.08 8) 25%, oklch(0.94 0.05 350) 50%, oklch(0.89 0.09 5) 75%, oklch(0.94 0.03 355) 100%);
+    background-size: 400% 400%;
+    animation: bgShift 20s ease-in-out infinite;
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  @keyframes bgShift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+  }
+
+  /* ── Canvas爱心粒子层 ── */
+  #heartsCanvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── 主内容层 ── */
+  .main-content {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh; padding: clamp(20px, 4vw, 60px) clamp(16px, 3vw, 40px);
+  }
+
+  /* ── 顶部小爱心装饰 ── */
+  .header-hearts {
+    font-size: clamp(28px, 5vw, 48px);
+    letter-spacing: 0.2em;
+    animation: floatHearts 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px oklch(0.70 0.20 10 / 0.4));
+  }
+  @keyframes floatHearts {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* ── 副标题 ── */
+  .subtitle {
+    font-size: clamp(14px, 2.2vw, 20px);
+    color: var(--pink-600);
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    text-align: center;
+    opacity: 0.85;
+    animation: subtitleFade 2.5s ease-in-out infinite;
+  }
+  @keyframes subtitleFade {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* ── 主名字区域 ── */
+  .name-zone {
+    position: relative;
+    margin: clamp(20px, 5vw, 50px) 0;
+    padding: clamp(30px, 6vw, 60px) clamp(40px, 8vw, 100px);
+  }
+
+  .name-text {
+    font-size: clamp(60px, 15vw, 180px);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    text-align: center;
+    background: linear-gradient(135deg,
+      oklch(0.55 0.28 15) 0%,
+      oklch(0.50 0.30 345) 20%,
+      oklch(0.58 0.26 10) 40%,
+      oklch(0.48 0.32 350) 60%,
+      oklch(0.55 0.28 20) 80%,
+      oklch(0.50 0.30 340) 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: nameShimmer 3s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px oklch(0.55 0.22 10 / 0.5));
+    position: relative;
+  }
+
+  @keyframes nameShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* 名字周围的闪烁星星 */
+  .sparkle {
+    position: absolute;
+    font-size: clamp(16px, 3vw, 32px);
+    pointer-events: none;
+    animation: sparklePop 1.8s ease-in-out infinite;
+  }
+  @keyframes sparklePop {
+    0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  }
+
+  /* ── 照片拍立得墙 ── */
+  .photo-wall {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(20px, 4vw, 50px);
+    margin: clamp(30px, 6vw, 60px) 0; max-width: 1200px;
+    perspective: 1000px;
+  }
+
+  .polaroid {
+    background: var(--cream);
+    padding: clamp(10px, 2vw, 18px) clamp(10px, 2vw, 18px) clamp(28px, 4vw, 48px);
+    box-shadow:
+      0 2px 8px oklch(0.60 0.02 10 / 0.15),
+      0 8px 24px oklch(0.50 0.03 10 / 0.12),
+      0 20px 48px oklch(0.40 0.03 10 / 0.08);
+    border-radius: 4px 4px 6px 6px;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+    transform: rotate(var(--rot, 0deg));
+    cursor: pointer;
+    position: relative;
+  }
+  .polaroid:hover {
+    transform: rotate(0deg) scale(1.08) translateY(-8px);
+    box-shadow:
+      0 6px 16px oklch(0.55 0.15 10 / 0.25),
+      0 16px 40px oklch(0.45 0.12 10 / 0.20),
+      0 30px 64px oklch(0.35 0.10 10 / 0.12);
+    z-index: 10;
+  }
+  .polaroid img {
+    display: block;
+    width: clamp(120px, 18vw, 220px);
+    height: clamp(150px, 22vw, 280px);
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  .polaroid .caption {
+    text-align: center;
+    font-size: clamp(11px, 1.5vw, 16px);
+    color: var(--pink-600);
+    margin-top: clamp(6px, 1vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── 整蛊按钮区 ── */
+  .prank-buttons {
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    margin: clamp(20px, 3vw, 40px) 0;
+  }
+
+  .prank-btn {
+    padding: clamp(12px, 2vw, 18px) clamp(24px, 3vw, 44px);
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-love {
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-500));
+    color: white;
+    box-shadow: 0 6px 20px oklch(0.55 0.22 10 / 0.35);
+  }
+  .btn-love:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 30px oklch(0.50 0.26 10 / 0.5);
+  }
+  .btn-love:active {
+    transform: scale(0.95);
+  }
+
+  .btn-what {
+    background: linear-gradient(135deg, oklch(0.96 0.02 80), oklch(0.92 0.04 75));
+    color: var(--pink-600);
+    border: 2px solid var(--pink-300);
+    animation: btnWiggle 3s ease-in-out infinite;
+  }
+  .btn-what:hover { transform: scale(1.08); }
+  @keyframes btnWiggle {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(2deg); }
+    80% { transform: rotate(-2deg); }
+    85% { transform: rotate(1deg); }
+    90% { transform: rotate(-1deg); }
+    95% { transform: rotate(0); }
+  }
+
+  /* ── 底部爱心带 ── */
+  .bottom-hearts {
+    font-size: clamp(20px, 3vw, 36px);
+    letter-spacing: 0.3em;
+    margin-top: auto;
+    padding: 30px 0 10px;
+    opacity: 0.7;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.06); }
+  }
+
+  /* ── 假弹窗 ── */
+  #prankModal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: oklch(0.2 0.02 0 / 0.55);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(4px);
+  }
+  #prankModal.active { opacity: 1; pointer-events: all; }
+
+  .modal-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: clamp(28px, 5vw, 48px);
+    text-align: center;
+    max-width: 420px; width: 90%;
+    box-shadow: 0 16px 48px oklch(0.3 0.02 10 / 0.3);
+    animation: modalBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes modalBounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .modal-card .modal-emoji {
+    font-size: clamp(48px, 8vw, 80px);
+    margin-bottom: 16px;
+  }
+  .modal-card h2 {
+    font-size: clamp(20px, 3.5vw, 30px);
+    color: var(--pink-600);
+    margin-bottom: 12px;
+  }
+  .modal-card p {
+    font-size: clamp(14px, 2.2vw, 18px);
+    color: var(--pink-500);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .modal-close {
+    padding: 10px 36px;
+    border-radius: 50px;
+    border: none;
+    background: var(--pink-400);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .modal-close:hover { transform: scale(1.08); }
+
+  /* ── 彩蛋飘落爱心 ── */
+  .confetti-heart {
+    position: fixed; top: -60px;
+    font-size: clamp(16px, 3vw, 28px);
+    animation: confettiFall var(--dur) linear forwards;
+    pointer-events: none; z-index: 9998;
+    opacity: 0.9;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    85% { opacity: 0.8; }
+    100% { transform: translateY(105vh) rotate(var(--spin)) scale(0.5); opacity: 0; }
+  }
+
+  /* ── 响应式 ── */
+  @media (max-width: 640px) {
+    .name-zone { padding: 20px 24px; }
+    .polaroid { --rot: 0deg !important; }
+    .photo-wall { gap: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="heartsCanvas"></canvas>
+
+<div class="main-content">
+  <div class="header-hearts">💖 💕 💗 💓 💝 💘 💖</div>
+  <div class="subtitle">✨ 欢迎来到蒋钟琪的专属页面 ✨</div>
+
+  <div class="name-zone" id="nameZone">
+    <span class="sparkle" style="top:-10px;left:-30px;animation-delay:0s;">✨</span>
+    <span class="sparkle" style="top:-20px;right:-25px;animation-delay:0.6s;">💫</span>
+    <span class="sparkle" style="bottom:-5px;left:-20px;animation-delay:1.0s;">⭐</span>
+    <span class="sparkle" style="bottom:-15px;right:-30px;animation-delay:1.4s;">🌟</span>
+    <span class="sparkle" style="top:30%;left:-40px;animation-delay:0.3s;">💖</span>
+    <span class="sparkle" style="top:60%;right:-35px;animation-delay:1.1s;">💕</span>
+    <div class="name-text">蒋 钟 琪</div>
+  </div>
+
+  <div class="photo-wall" id="photoWall"></div>
+
+  <div class="prank-buttons">
+    <button class="prank-btn btn-love" onclick="showPrank()">❤️ 点我试试 ❤️</button>
+    <button class="prank-btn btn-what" onclick="triggerConfetti()">🤔 别点这个 🤔</button>
+  </div>
+
+  <div class="bottom-hearts">💖 💗 💕 💓 💝 💘 💖 💗</div>
+</div>
+
+<!-- 整蛊弹窗 -->
+<div id="prankModal">
+  <div class="modal-card">
+    <div class="modal-emoji">😈💕</div>
+    <h2>恭喜你！</h2>
+    <p id="prankMsg">你已成功激活蒋钟琪的<br>💖 永久爱心模式 💖<br>这辈子都关不掉了哦~</p>
+    <button class="modal-close" onclick="closePrank()">🥺 好吧</button>
+  </div>
+</div>
+
+<script>
+// ── 照片数据 ──
+const photos = [
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=2907306568109302480&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg",
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=3782155335068057047&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg",
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=3910882444137983752&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg",
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=4661735911801920123&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg",
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=5689251644868893926&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg",
+  "_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=6258318823782965274&skey=@crypt_7d3b0854_5527ac011595dc6418b0b33a9bd78c24&mmweb_appid=wx_webfilehelper.jpg"
+];
+
+// ── 渲染照片墙 ──
+const wall = document.getElementById('photoWall');
+const rotations = [-5, 3, -2, 6, -4, 2, -6, 4, -3, 5];
+const captions = ["可爱暴击 💘", "蒋钟琪本琪 😎", "颜值担当 ✨", "不要爱上我 😈", "禁止截图 🚫", "心跳加速中 💓"];
+
+photos.forEach((src, i) => {
+  const div = document.createElement('div');
+  div.className = 'polaroid';
+  div.style.setProperty('--rot', rotations[i % rotations.length] + 'deg');
+  div.style.animationDelay = (i * 0.1) + 's';
+  div.innerHTML = `
+    <img src="img/${src.replace(/&/g, '&amp;')}" alt="蒋钟琪照片 ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'">
+    <div class="caption">${captions[i % captions.length]}</div>
+  `;
+  wall.appendChild(div);
+});
+
+// ── Canvas 爱心粒子 ──
+const canvas = document.getElementById('heartsCanvas');
+const ctx = canvas.getContext('2d');
+let hearts = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const heartPaths = [
+  '❤️', '💕', '💗', '💓', '💖', '💝', '💘', '♥'
+];
+
+class FloatingHeart {
+  constructor() {
+    this.reset(true);
+  }
+  reset(init) {
+    this.x = Math.random() * canvas.width;
+    this.y = init ? Math.random() * canvas.height : -60;
+    this.size = 10 + Math.random() * 28;
+    this.speed = 0.3 + Math.random() * 1.2;
+    this.opacity = 0.15 + Math.random() * 0.35;
+    this.wobble = Math.random() * Math.PI * 2;
+    this.wobbleSpeed = 0.003 + Math.random() * 0.012;
+    this.wobbleAmp = 20 + Math.random() * 50;
+    this.symbol = heartPaths[Math.floor(Math.random() * heartPaths.length)];
+  }
+  update() {
+    this.y -= this.speed;
+    this.wobble += this.wobbleSpeed;
+    if (this.y < -80) this.reset(false);
+  }
+  draw(ctx) {
+    ctx.save();
+    ctx.font = `${this.size}px sans-serif`;
+    ctx.globalAlpha = this.opacity;
+    const sx = this.x + Math.sin(this.wobble) * this.wobbleAmp;
+    ctx.fillText(this.symbol, sx, this.y);
+    ctx.restore();
+  }
+}
+
+for (let i = 0; i < 60; i++) hearts.push(new FloatingHeart());
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hearts.forEach(h => { h.update(); h.draw(ctx); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── 整蛊弹窗 ──
+const prankMessages = [
+  "你已成功激活蒋钟琪的<br>💖 永久爱心模式 💖<br>这辈子都关不掉了哦~",
+  "系统检测到你对蒋钟琪<br>好感度 +999999 ❤️<br>请查收你的爱心大礼包！",
+  "⚠️ 警告 ⚠️<br>你的屏幕已被爱心占领<br>预计恢复时间：永远",
+  "蒋钟琪向你发送了<br>💌 一封神秘情书 💌<br>内容：哈哈哈哈被骗了吧！",
+  "🔔 叮咚！<br>你刚刚按下的按钮<br>触发了蒋钟琪的可爱光环 ✨",
+];
+
+function showPrank() {
+  const msg = prankMessages[Math.floor(Math.random() * prankMessages.length)];
+  document.getElementById('prankMsg').innerHTML = msg;
+  document.getElementById('prankModal').classList.add('active');
+  spawnMiniHearts(8);
+}
+
+function closePrank() {
+  document.getElementById('prankModal').classList.remove('active');
+}
+
+document.getElementById('prankModal').addEventListener('click', function(e) {
+  if (e.target === this) closePrank();
+});
+
+// ── 飘落爱心 ──
+function triggerConfetti() {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(() => {
+      const el = document.createElement('span');
+      el.className = 'confetti-heart';
+      el.textContent = heartPaths[Math.floor(Math.random() * heartPaths.length)];
+      el.style.left = Math.random() * 95 + '%';
+      el.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
+      el.style.setProperty('--spin', (Math.random() * 720 - 360) + 'deg');
+      el.style.animationDelay = '0s';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5000);
+    }, i * 60);
+  }
+}
+
+function spawnMiniHearts(count) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const el = document.createElement('span');
+      el.className = 'confetti-heart';
+      el.textContent = '💖';
+      el.style.left = (30 + Math.random() * 40) + '%';
+      el.style.top = '30%';
+      el.style.setProperty('--dur', (1.5 + Math.random() * 2) + 's');
+      el.style.setProperty('--spin', (Math.random() * 360 - 180) + 'deg');
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 40);
+  }
+}
+
+// ── 照片点击撒爱心 ──
+document.getElementById('photoWall').addEventListener('click', function(e) {
+  if (e.target.closest('.polaroid')) {
+    spawnMiniHearts(5);
+  }
+});
+
+// ── 键盘彩蛋 ──
+document.addEventListener('keydown', function(e) {
+  if (e.key.toLowerCase() === 'j') triggerConfetti();
+});
+</script>
+
+</body>
+</html>
