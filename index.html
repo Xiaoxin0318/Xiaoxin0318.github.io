@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雷新钰 · 个人简历</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hue: 225;
+  --bg-deep: oklch(6% 0.012 var(--hue));
+  --bg-base: oklch(9% 0.015 var(--hue));
+  --text-primary: oklch(94% 0.004 var(--hue));
+  --text-secondary: oklch(76% 0.008 var(--hue));
+  --text-muted: oklch(54% 0.012 var(--hue));
+  --accent: oklch(68% 0.22 var(--hue));
+  --accent-glow: oklch(68% 0.25 var(--hue));
+  --accent-subtle: oklch(32% 0.07 var(--hue));
+  --glass-bg: oklch(100% 0 0 / 0.055);
+  --glass-bg-hover: oklch(100% 0 0 / 0.09);
+  --glass-border: oklch(100% 0 0 / 0.12);
+  --glass-border-hover: oklch(100% 0 0 / 0.22);
+  --glass-highlight: oklch(100% 0 0 / 0.07);
+  --glass-shadow: 0 4px 40px oklch(0% 0 0 / 0.5);
+  --glass-shadow-hover: 0 8px 60px oklch(0% 0 0 / 0.65), 0 0 80px oklch(68% 0.22 var(--hue) / 0.08);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --sidebar-w: clamp(200px, 16vw, 260px);
+  --content-max: 960px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: clamp(14px, 0.9vw + 8px, 16px);
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Snap Scroll Container ── */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* ── Background Canvas ── */
+#bg-canvas {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ── Ambient Orbs ── */
+.amb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(140px);
+}
+.amb-1 {
+  width: 700px; height: 700px;
+  background: oklch(60% 0.2 var(--hue) / 0.1);
+  top: -350px; right: -200px;
+}
+.amb-2 {
+  width: 500px; height: 500px;
+  background: oklch(65% 0.16 calc(var(--hue) + 50) / 0.07);
+  bottom: -200px; left: -150px;
+}
+.amb-3 {
+  width: 350px; height: 350px;
+  background: oklch(70% 0.14 calc(var(--hue) + 120) / 0.06);
+  top: 55%; left: 60%;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px clamp(16px, 2vw, 28px);
+  background: oklch(8% 0.012 var(--hue) / 0.6);
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  border-right: 1px solid oklch(100% 0 0 / 0.06);
+}
+
+.sidebar-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  margin-bottom: clamp(20px, 4vh, 40px);
+}
+
+.sidebar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.35s var(--ease-out-quart);
+  position: relative;
+}
+
+.sidebar-nav a::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.35s var(--ease-out-quart);
+}
+
+.sidebar-nav a:hover { color: var(--text-primary); background: oklch(100% 0 0 / 0.06); }
+.sidebar-nav a.active { color: var(--text-primary); background: oklch(100% 0 0 / 0.06); }
+.sidebar-nav a.active::before { transform: scaleY(1); }
+
+.sidebar-nav .nav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor; flex-shrink: 0;
+  transition: all 0.35s var(--ease-out-quart);
+}
+.sidebar-nav a.active .nav-dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.sidebar-footer { margin-top: auto; font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; }
+
+/* ── Section (Full Viewport Snap) ── */
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section-inner {
+  margin-left: var(--sidebar-w);
+  max-width: var(--content-max);
+  width: 100%;
+  padding: clamp(40px, 5vw, 80px) clamp(20px, 4vw, 60px);
+}
+
+/* ── Glass Card ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.45s var(--ease-out-quart), border-color 0.45s var(--ease-out-quart), box-shadow 0.45s var(--ease-out-quart), transform 0.45s var(--ease-out-quart);
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0; border-radius: inherit;
+  background: linear-gradient(145deg, oklch(100% 0 0 / 0.08) 0%, transparent 45%, oklch(100% 0 0 / 0.03) 100%);
+  pointer-events: none; z-index: 2;
+}
+.glass:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover), inset 0 1px 0 oklch(100% 0 0 / 0.1);
+}
+
+/* ── Section Header ── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.section-heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: clamp(16px, 2.5vw, 32px);
+  background: linear-gradient(135deg, oklch(96% 0.005 var(--hue)), oklch(80% 0.02 var(--hue)));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ── Hero ── */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 100px;
+  font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.05em; color: var(--accent);
+  background: oklch(68% 0.22 var(--hue) / 0.1);
+  border: 1px solid oklch(68% 0.22 var(--hue) / 0.18);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  width: fit-content; margin-bottom: 20px;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.6); }
+}
+.hero-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.02; margin-bottom: 8px;
+}
+.hero-name .highlight {
+  background: linear-gradient(135deg, oklch(70% 0.25 var(--hue)) 0%, oklch(78% 0.15 calc(var(--hue) + 60)) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.3rem); font-weight: 400;
+  color: var(--text-secondary); letter-spacing: 0.01em; margin-bottom: 16px;
+}
+.hero-desc {
+  color: var(--text-muted); font-size: 0.95rem;
+  max-width: 520px; line-height: 1.85; margin-bottom: 28px;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: clamp(16px, 3vw, 36px);
+}
+.hero-stat { text-align: left; }
+.hero-stat .val {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem); font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.hero-stat .lbl {
+  font-size: 0.72rem; color: var(--text-muted);
+  margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase;
+}
+
+/* ── Resume Card ── */
+.resume-card {
+  padding: clamp(16px, 2vw, 24px);
+  display: flex; align-items: center; gap: clamp(16px, 3vw, 28px);
+}
+.resume-thumb {
+  flex-shrink: 0;
+  width: clamp(120px, 16vw, 180px); border-radius: 12px;
+  overflow: hidden; border: 1px solid oklch(100% 0 0 / 0.08);
+}
+.resume-thumb img { width: 100%; display: block; transition: transform 0.5s var(--ease-out-quart); }
+.resume-card:hover .resume-thumb img { transform: scale(1.04); }
+.resume-info h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.2rem); font-weight: 600; margin-bottom: 6px;
+}
+.resume-info p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+.resume-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.resume-tag {
+  font-size: 0.68rem; font-weight: 500; padding: 3px 10px; border-radius: 100px;
+  background: var(--accent-subtle); color: var(--accent);
+  border: 1px solid oklch(68% 0.22 var(--hue) / 0.12);
+}
+
+/* ── Education ── */
+.edu-card {
+  padding: clamp(18px, 2.5vw, 28px); margin-bottom: clamp(12px, 2vw, 18px);
+}
+.edu-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.2rem); font-weight: 600; margin-bottom: 4px;
+}
+.edu-card .edu-meta {
+  font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-bottom: 10px;
+}
+.edu-card .edu-detail { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.75; }
+.edu-card .edu-detail li { margin-bottom: 4px; }
+.edu-card .edu-detail ul { padding-left: 18px; }
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(to bottom,
+    oklch(68% 0.22 var(--hue) / 0.5),
+    oklch(68% 0.22 var(--hue) / 0.1),
+    oklch(100% 0 0 / 0.04));
+}
+.tl-item { padding: clamp(16px, 2vw, 24px); margin-bottom: clamp(10px, 1.5vw, 16px); position: relative; }
+.tl-item::after {
+  content: ''; position: absolute;
+  left: calc(-28px - 5px); top: clamp(24px, 2.5vw, 30px);
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 20px oklch(68% 0.25 var(--hue) / 0.5), 0 0 60px oklch(68% 0.25 var(--hue) / 0.15);
+  z-index: 2;
+}
+.tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 4px;
+}
+.tl-role {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem); font-weight: 600; margin-bottom: 2px;
+}
+.tl-org { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+.tl-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7; }
+
+/* ── Projects ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+}
+.proj-card {
+  padding: clamp(16px, 2vw, 24px);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.proj-icon { font-size: 1.4rem; }
+.proj-name { font-family: 'Outfit', sans-serif; font-size: clamp(0.95rem, 1.2vw, 1.1rem); font-weight: 600; }
+.proj-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.proj-tag {
+  font-size: 0.63rem; font-weight: 500; font-family: 'JetBrains Mono', monospace;
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--accent-subtle); color: var(--accent);
+  border: 1px solid oklch(68% 0.22 var(--hue) / 0.1);
+}
+
+/* ── Awards ── */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: clamp(10px, 1.5vw, 14px);
+}
+.award-card {
+  padding: clamp(14px, 1.8vw, 20px);
+}
+.award-card .aw-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; color: var(--accent); margin-bottom: 4px;
+}
+.award-card .aw-name {
+  font-size: 0.82rem; font-weight: 600; line-height: 1.4; margin-bottom: 2px;
+}
+.award-card .aw-level {
+  font-size: 0.7rem; color: var(--text-muted);
+}
+
+/* ── Skills ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: clamp(10px, 1.5vw, 16px);
+}
+.skill-item {
+  padding: clamp(14px, 2vw, 22px) clamp(12px, 1.5vw, 18px);
+  text-align: center;
+  font-family: 'Outfit', sans-serif; font-weight: 500;
+  font-size: clamp(0.78rem, 0.95vw, 0.9rem); color: var(--text-secondary);
+}
+.skill-item .si-icon {
+  font-size: clamp(1.5rem, 2vw, 2rem); display: block;
+  margin-bottom: 10px; transition: transform 0.35s var(--ease-out-quart);
+}
+.skill-item:hover { color: var(--accent); }
+.skill-item:hover .si-icon { transform: translateY(-3px); }
+
+/* ── Contact ── */
+.contact-row {
+  display: flex; flex-wrap: wrap; gap: clamp(10px, 1.5vw, 16px);
+}
+.contact-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 22px; font-size: 0.85rem;
+  color: var(--text-secondary); text-decoration: none; cursor: pointer;
+}
+.contact-chip .ci { font-size: 1.2rem; }
+.contact-chip:hover { color: var(--accent); }
+.contact-text { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; }
+
+/* ── Light Sweep ── */
+.light-sweep { position: relative; overflow: hidden; }
+.light-sweep::after {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at var(--sx, 50%) var(--sy, 50%), oklch(100% 0 0 / 0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.5s;
+}
+.light-sweep:hover::after { opacity: 1; }
+
+/* ── Reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(50px);
+  transition: opacity 0.8s var(--ease-out-quart), transform 0.8s var(--ease-out-quart);
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+.reveal-stagger > * {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.65s var(--ease-out-quart), transform 0.65s var(--ease-out-quart);
+}
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 55ms; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 110ms; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 165ms; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 220ms; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 275ms; }
+.reveal-stagger.revealed > *:nth-child(7) { transition-delay: 330ms; }
+.reveal-stagger.revealed > *:nth-child(8) { transition-delay: 385ms; }
+.reveal-stagger.revealed > *:nth-child(9) { transition-delay: 440ms; }
+.reveal-stagger.revealed > *:nth-child(10) { transition-delay: 495ms; }
+.reveal-stagger.revealed > * { opacity: 1; transform: translateY(0); }
+
+/* ── Scroll Hint ── */
+.scroll-hint {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  opacity: 0.4; animation: float-hint 2.5s ease-in-out infinite;
+  pointer-events: none; z-index: 2;
+}
+.scroll-hint span { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; }
+.scroll-hint .arrow { font-size: 0.9rem; }
+@keyframes float-hint { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .sidebar {
+    position: relative; width: 100%; flex-direction: row;
+    align-items: center; padding: 12px 20px; justify-content: space-between;
+    backdrop-filter: blur(20px);
+  }
+  .sidebar-logo { margin-bottom: 0; font-size: 1rem; }
+  .sidebar-nav { flex-direction: row; gap: 4px; }
+  .sidebar-nav a { padding: 6px 10px; font-size: 0.7rem; gap: 4px; }
+  .sidebar-nav a::before { display: none; }
+  .sidebar-nav .nav-dot { display: none; }
+  .sidebar-footer { display: none; }
+  .section-inner { margin-left: 0; }
+  .snap-container { scroll-snap-type: none; }
+  .section { min-height: auto; }
+  .resume-card { flex-direction: column; }
+  .resume-thumb { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
+  #bg-canvas { display: none; }
+  .amb { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="amb amb-1"></div>
+<div class="amb amb-2"></div>
+<div class="amb amb-3"></div>
+<canvas id="bg-canvas"></canvas>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">LX</div>
+  <nav>
+    <ul class="sidebar-nav" id="sideNav">
+      <li><a href="#about" class="active"><span class="nav-dot"></span> 关于我</a></li>
+      <li><a href="#education"><span class="nav-dot"></span> 教育背景</a></li>
+      <li><a href="#experience"><span class="nav-dot"></span> 实习经历</a></li>
+      <li><a href="#projects"><span class="nav-dot"></span> 项目经验</a></li>
+      <li><a href="#awards"><span class="nav-dot"></span> 获奖荣誉</a></li>
+      <li><a href="#skills"><span class="nav-dot"></span> 技能特长</a></li>
+      <li><a href="#contact"><span class="nav-dot"></span> 联系方式</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">&copy; 2026 LX</div>
+</aside>
+
+<div class="snap-container" id="snapContainer">
+
+  <!-- About -->
+  <section class="section reveal" id="about">
+    <div class="section-inner">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> Unity开发 · 3D建模</div>
+      <h1 class="hero-name">雷新钰<span class="highlight">.</span></h1>
+      <p class="hero-title">Unity应用开发工程师 · 3D建模设计师 · VR/AR 内容创作者</p>
+      <p class="hero-desc">
+        软件技术专业，擅长 Unity 开发与 3D 建模。拥有丰富的 VR/AR 项目开发经验，主导多个省级获奖项目。
+        熟练运用 Unity3D、3ds Max、C# 等技术栈，具备项目管理与团队协作能力。
+      </p>
+      <div class="hero-meta">
+        <div class="hero-stat"><div class="val">21</div><div class="lbl">岁 · 浙江温州</div></div>
+        <div class="hero-stat"><div class="val">45</div><div class="lbl">项获奖荣誉</div></div>
+        <div class="hero-stat"><div class="val">7</div><div class="lbl">项软件著作权</div></div>
+        <div class="hero-stat"><div class="val">7</div><div class="lbl">家媒体报道</div></div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education">
+    <div class="section-inner">
+      <div class="section-label">// Education</div>
+      <h2 class="section-heading">教育背景</h2>
+      <div class="edu-card glass light-sweep reveal">
+        <h3>湖州职业技术学院</h3>
+        <div class="edu-meta">软件技术专业 · 2021.09 — 2024.06 · 专业成绩 1/36</div>
+        <div class="edu-detail">
+          <p style="margin-bottom:10px"><strong>主修课程：</strong>Unity3D开发、3ds Max模型设计、C# WinForm、MySQL、Python、安卓移动应用开发</p>
+          <p style="margin-bottom:8px"><strong>荣誉称号：</strong></p>
+          <ul>
+            <li>学校「技能之星」「创新创业之星」「青年五四奖章」</li>
+            <li>两次校一等奖学金、省政府奖学金</li>
+            <li>优秀学生、优秀学生干部等称号，累计获奖荣誉 45 项</li>
+          </ul>
+        </div>
+      </div>
+      <div class="edu-card glass light-sweep reveal">
+        <h3>校园实践</h3>
+        <div class="edu-detail">
+          <ul>
+            <li>校内融媒体中心视觉部、运营部部长</li>
+            <li>运营学校官方抖音号、视频号、微信公众号</li>
+            <li>使用秀米和135编辑器排版图文</li>
+          </ul>
+        </div>
+      </div>
+      <div class="edu-card glass light-sweep reveal">
+        <h3>媒体报道</h3>
+        <div class="edu-detail">
+          <p>个人专题报道在学习强国、浙江日报、教育之江等 <strong>7 家媒体平台</strong>报道，其中学习强国两次报道。</p>
+          <p style="margin-top:6px;font-style:italic;color:var(--text-muted)">《凡人风采 | 雷新钰：坚守初心攀高峰 追匠匠心展风采 永葆匠心喜来时》阅读量超十万</p>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="section-inner">
+      <div class="section-label">// Experience</div>
+      <h2 class="section-heading">实习经历</h2>
+      <div class="timeline">
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2022.11 — 2024.03</div>
+          <div class="tl-role">Unity 应用开发</div>
+          <div class="tl-org">湖州畅游科技有限公司</div>
+          <div class="tl-desc">
+            主力开发《醉韵千佰 灵境》《黄庭碑摹帖拟书VR》《湖职院录取通知书AR》等项目，参与模型设计与制作。目前个人拥有无人机模拟器、遇上湖职AR软件等 <strong>7 项计算机软件著作权</strong>，CSDN 平台拥有 9 年昵称的账号。
+          </div>
+        </div>
+        <div class="tl-item glass light-sweep reveal">
+          <div class="tl-date">2024.03 — 2024.08</div>
+          <div class="tl-role">课程开发与培训专员</div>
+          <div class="tl-org">浙江楚为互动科技有限公司</div>
+          <div class="tl-desc">
+            编撰中职《数字艺术设计交互课程》专业课程，培训数字艺术、动漫制作、虚拟现实、短视频等职业院校技能大赛项目。被邀请担任<strong>全球金砖国家一带一路世界赛虚拟现实赛项</strong>出题人和技术运维。
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-label">// Projects</div>
+      <h2 class="section-heading">项目经验</h2>
+      <div class="projects-grid reveal-stagger" style="margin-bottom:clamp(10px,1.5vw,16px)">
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9670;</div>
+          <div class="proj-name">醉韵千佰 灵境</div>
+          <div class="proj-desc">
+            项目代码部分主要负责人，代码完全由个人完成。设计了智能中控、智能电视、智能平板、时间切换系统、毛笔书写台等交互功能模块。使用 URP 管线渲染技术设计制作材质，耗时半年完成。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Unity3D</span>
+            <span class="proj-tag">URP</span>
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">3D建模</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9650;</div>
+          <div class="proj-name">湖职院录取通知书AR</div>
+          <div class="proj-desc">
+            AR 增强现实项目，将纸质录取通知书与 3D 交互内容结合，扫描即可呈现校园全景与动态迎新内容，提升新生入学体验。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">AR</span>
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">Vuforia</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#10031;</div>
+          <div class="proj-name">黄庭碑摹帖拟书VR</div>
+          <div class="proj-desc">
+            虚拟现实书法临摹系统，支持毛笔书写轨迹实时捕捉与笔触还原，用于传统文化数字化教学与体验。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">VR</span>
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">3D交互</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9679;</div>
+          <div class="proj-name">无人机模拟器</div>
+          <div class="proj-desc">
+            飞行模拟训练软件，支持多场景无人机飞行训练与考核评估。已获得计算机软件著作权。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">模拟器</span>
+            <span class="proj-tag">C#</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9632;</div>
+          <div class="proj-name">数字艺术设计交互课程</div>
+          <div class="proj-desc">
+            编撰中职专业课程，涵盖数字艺术、动漫制作、虚拟现实等内容，用于职业院校技能大赛培训。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">课程开发</span>
+            <span class="proj-tag">教学设计</span>
+            <span class="proj-tag">VR</span>
+          </div>
+        </div>
+        <div class="proj-card glass light-sweep">
+          <div class="proj-icon">&#9660;</div>
+          <div class="proj-name">遇上湖职AR</div>
+          <div class="proj-desc">
+            校园导览 AR 应用，通过手机扫描校园建筑即可获取导航与信息介绍。已获软件著作权。
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">AR</span>
+            <span class="proj-tag">移动应用</span>
+            <span class="proj-tag">Unity</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="section" id="awards">
+    <div class="section-inner">
+      <div class="section-label">// Awards</div>
+      <h2 class="section-heading">获奖荣誉</h2>
+      <div class="awards-grid reveal-stagger">
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.12</div>
+          <div class="aw-name">第22届浙江省大学生VR多媒体作品设计竞赛</div>
+          <div class="aw-level">一等奖（省级）· 1/3</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.12</div>
+          <div class="aw-name">第十四届蓝桥杯"元境杯"元宇宙创想+数字内容创作大赛</div>
+          <div class="aw-level">二等奖（国家级）· 1/3</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.05</div>
+          <div class="aw-name">第六届浙江省高职虚拟现实（VR）设计与制作竞赛</div>
+          <div class="aw-level">二等奖（省级）· 1/3</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.05</div>
+          <div class="aw-name">浙江省高职院校技能大赛"短视频创作与运营"</div>
+          <div class="aw-level">一等奖（省级）· 1/4</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.05</div>
+          <div class="aw-name">"建行杯"第九届浙江省国际互联网+创新创业大赛</div>
+          <div class="aw-level">银奖（省级）· 1/15</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.06</div>
+          <div class="aw-name">"农行杯"第十八届浙江省大学生电子商务竞赛</div>
+          <div class="aw-level">一等奖（省级）· 1/5</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.11</div>
+          <div class="aw-name">第九届浙江省经济管理案例竞赛</div>
+          <div class="aw-level">一等奖（省级）· 1/5</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.04</div>
+          <div class="aw-name">浙江省第18届"挑战杯"大学生课外学术科技作品竞赛</div>
+          <div class="aw-level">铜奖（省级）· 1/15</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2023.07</div>
+          <div class="aw-name">全国高校商务精英挑战赛全国总决赛</div>
+          <div class="aw-level">一等奖（国家级）· 1/3</div>
+        </div>
+        <div class="award-card glass light-sweep">
+          <div class="aw-date">2024.04</div>
+          <div class="aw-name">浙江省挑战杯科学技术赛</div>
+          <div class="aw-level">一等奖（省级）· 1/8</div>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <div class="section-label">// Skills</div>
+      <h2 class="section-heading">技能特长</h2>
+      <div class="skills-grid reveal-stagger" style="margin-bottom:clamp(20px,3vw,32px)">
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9670;</span> Unity3D 开发</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9650;</span> 3ds Max 建模</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9679;</span> C# WinForm</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9660;</span> MySQL</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9632;</span> Python</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#10031;</span> VR/AR 开发</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9830;</span> URP 渲染</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9654;</span> Adobe PS/PR/AE</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9881;</span> 摄影技术</div>
+        <div class="skill-item glass light-sweep"><span class="si-icon">&#9854;</span> 项目管理</div>
+      </div>
+      <div class="edu-card glass light-sweep reveal">
+        <h3>证书资质</h3>
+        <div class="edu-detail">
+          <ul>
+            <li>大数据应用开发（Java）职业技能等级证书（中级）</li>
+            <li>计算机视觉架构师（中级）</li>
+            <li>7 项计算机软件著作权</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <div class="section-label">// Contact</div>
+      <h2 class="section-heading">联系方式</h2>
+      <div class="contact-row reveal-stagger" style="margin-bottom:clamp(12px,2vw,18px)">
+        <a class="contact-chip glass" href="tel:17816321870"><span class="ci">&#9742;</span> 17816321870</a>
+        <a class="contact-chip glass" href="mailto:2876314366@qq.com"><span class="ci">&#9993;</span> 2876314366@qq.com</a>
+      </div>
+      <p class="contact-text reveal">籍贯：浙江温州 · 政治面貌：共青团员 · 软件技术专业</p>
+      <div class="scroll-hint"><span>回到顶部</span><span class="arrow">&#8593;</span></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// ── Solar System + Particle Background ──
+(function(){
+  const c=document.getElementById('bg-canvas'),ctx=c.getContext('2d');
+  let ps=[],m={x:-200,y:-200},aid,t=0;
+  const stars = [];
+  const planets = [];
+  const meteors = [];
+  const nebulae = [];
+  const flares = [];
+  const meteorTrails = [];
+  let sunX, sunY, sunR;
+
+  function initStars(){
+    stars.length=0;
+    for(let i=0;i<200;i++){
+      const s={
+        origX:Math.random()*c.width, origY:Math.random()*c.height,
+        x:0, y:0,
+        r:Math.random()*1.2+0.3, o:Math.random()*0.5+0.2,
+        twinkle:Math.random()*Math.PI*2,
+        driftAmp:Math.random()*0.25+0.05,
+        driftFreq:Math.random()*0.015+0.005,
+        driftPhase:Math.random()*Math.PI*2
+      };
+      s.x=s.origX; s.y=s.origY;
+      stars.push(s);
+    }
+  }
+
+  function initNebulae(){
+    nebulae.length=0;
+    nebulae.push({x:c.width*0.35,y:c.height*0.25,r:Math.min(c.width,c.height)*0.38,color:'120,80,200',driftX:0.0003,driftY:0.0002});
+    nebulae.push({x:c.width*0.65,y:c.height*0.68,r:Math.min(c.width,c.height)*0.3,color:'60,40,150',driftX:0.00025,driftY:-0.00015});
+    nebulae.push({x:c.width*0.12,y:c.height*0.72,r:Math.min(c.width,c.height)*0.24,color:'40,60,170',driftX:-0.0002,driftY:0.00015});
+    nebulae.push({x:c.width*0.78,y:c.height*0.48,r:Math.min(c.width,c.height)*0.22,color:'120,55,35',driftX:-0.00035,driftY:-0.0002});
+  }
+
+  function initPlanets(){
+    planets.length=0;
+    sunX=c.width*0.82; sunY=c.height*0.18; sunR=Math.min(c.width,c.height)*0.1;
+    // Orbiting planets around the sun
+    planets.push({r:Math.min(c.width,c.height)*0.04, color:'180,140,100',
+      ringW:1.6, ringAlpha:0.07, orbitR:Math.min(c.width,c.height)*0.18,
+      angle:Math.random()*Math.PI*2, speed:0.0004, glow:8, cx:0,cy:0,
+      centerX:sunX, centerY:sunY});
+    planets.push({r:Math.min(c.width,c.height)*0.025, color:'100,160,220',
+      ringW:0, ringAlpha:0, orbitR:Math.min(c.width,c.height)*0.28,
+      angle:Math.random()*Math.PI*2, speed:0.00055, glow:4, cx:0,cy:0,
+      centerX:sunX, centerY:sunY});
+    // Dispersed planets (independent positions, no orbit)
+    planets.push({r:Math.min(c.width,c.height)*0.018, color:'200,120,80',
+      ringW:0.5, ringAlpha:0.04, orbitR:0, angle:0, speed:0, glow:3,
+      cx:c.width*0.88, cy:c.height*0.52, centerX:0, centerY:0});
+    planets.push({r:Math.min(c.width,c.height)*0.05, color:'160,130,180',
+      ringW:1.3, ringAlpha:0.06, orbitR:0, angle:0, speed:0, glow:6,
+      cx:c.width*0.06, cy:c.height*0.22, centerX:0, centerY:0});
+    planets.push({r:Math.min(c.width,c.height)*0.013, color:'140,180,220',
+      ringW:0, ringAlpha:0, orbitR:0, angle:0, speed:0, glow:2,
+      cx:c.width*0.25, cy:c.height*0.85, centerX:0, centerY:0});
+  }
+
+  function updatePlanets(){
+    const t=Date.now()*0.001;
+    for(const p of planets){
+      if(p.orbitR>0){
+        p.angle += p.speed;
+        p.cx = sunX + Math.cos(p.angle) * p.orbitR;
+        p.cy = sunY + Math.sin(p.angle) * p.orbitR;
+      }
+    }
+  }
+
+  function rs(){
+    c.width=window.innerWidth;c.height=window.innerHeight;
+    const n=Math.min(Math.floor((c.width*c.height)/10000),120);
+    ps=Array.from({length:n},()=>{
+      const nearSun=Math.random()<0.18;
+      return {
+        x:Math.random()*c.width,y:Math.random()*c.height,
+        r:nearSun?Math.random()*0.7+0.25:Math.random()*1.2+0.3,
+        vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,
+        o:nearSun?Math.random()*.3+.1:Math.random()*.4+.08,
+        color:nearSun?'255,200,150':'160,190,240'
+      };
+    });
+    initStars(); initPlanets(); initNebulae();
+    if(!aid) dr();
+  }
+
+  function drawSun(tick){
+    const t=Date.now()*0.0003;
+    // Outer corona
+    for(let i=3;i>=0;i--){
+      const grd=ctx.createRadialGradient(sunX,sunY,sunR*(0.4+i*0.6),sunX,sunY,sunR*(1.2+i*0.6));
+      grd.addColorStop(0,`rgba(255,200,100,${0.08-i*0.015})`);
+      grd.addColorStop(0.5,`rgba(255,140,40,${0.04-i*0.008})`);
+      grd.addColorStop(1,'rgba(255,100,20,0)');
+      ctx.fillStyle=grd;
+      ctx.beginPath();ctx.arc(sunX,sunY,sunR*(1.5+i*0.7),0,Math.PI*2);ctx.fill();
+    }
+    // Sun body
+    const sgrd=ctx.createRadialGradient(sunX-sunR*0.2,sunY-sunR*0.2,sunR*0.05,sunX,sunY,sunR);
+    sgrd.addColorStop(0,'rgba(255,240,200,0.5)');
+    sgrd.addColorStop(0.3,'rgba(255,200,100,0.3)');
+    sgrd.addColorStop(0.6,'rgba(255,140,40,0.12)');
+    sgrd.addColorStop(1,'rgba(255,80,10,0)');
+    ctx.fillStyle=sgrd;
+    ctx.beginPath();ctx.arc(sunX,sunY,sunR,0,Math.PI*2);ctx.fill();
+    // Solar flares
+    if(Math.random()<0.004){
+      const fAngle=Math.random()*Math.PI*2;
+      flares.push({angle:fAngle,life:1.2+Math.random()*2,len:sunR*(0.25+Math.random()*0.6),maxLife:1.8+Math.random()*1.8});
+    }
+    for(let i=flares.length-1;i>=0;i--){
+      const f=flares[i];f.life-=0.015;
+      if(f.life<=0){flares.splice(i,1);continue;}
+      const alpha=f.life/f.maxLife,progress=1-alpha;
+      const fx=sunX+Math.cos(f.angle)*sunR*0.85,fy=sunY+Math.sin(f.angle)*sunR*0.85;
+      const ex=sunX+Math.cos(f.angle)*(sunR+f.len*progress),ey=sunY+Math.sin(f.angle)*(sunR+f.len*progress);
+      const fgrd=ctx.createLinearGradient(fx,fy,ex,ey);
+      fgrd.addColorStop(0,`rgba(255,240,200,${alpha*0.55})`);
+      fgrd.addColorStop(0.4,`rgba(255,180,80,${alpha*0.18})`);
+      fgrd.addColorStop(1,'rgba(255,100,20,0)');
+      ctx.strokeStyle=fgrd;ctx.lineWidth=2.2*alpha;
+      ctx.beginPath();ctx.moveTo(fx,fy);ctx.lineTo(ex,ey);ctx.stroke();
+    }
+  }
+
+  function drawPlanet(p){
+    // Orbit ring
+    if(p.ringW>0){
+      ctx.save();
+      ctx.translate(p.cx,p.cy);
+      ctx.rotate(0.4);
+      ctx.scale(1,0.35);
+      ctx.beginPath();ctx.arc(0,0,p.r*p.ringW,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(${p.color},${p.ringAlpha})`;
+      ctx.lineWidth=Math.max(p.r*0.3,2);
+      ctx.stroke();
+      ctx.restore();
+    }
+    // Planet body
+    const grd=ctx.createRadialGradient(p.cx-p.r*0.3,p.cy-p.r*0.3,p.r*0.1,p.cx,p.cy,p.r);
+    grd.addColorStop(0,`rgba(${p.color},0.35)`);
+    grd.addColorStop(0.7,`rgba(${p.color},0.12)`);
+    grd.addColorStop(1,`rgba(${p.color},0)`);
+    ctx.fillStyle=grd;
+    ctx.beginPath();ctx.arc(p.cx,p.cy,p.r,0,Math.PI*2);ctx.fill();
+    // Glow
+    const glow=ctx.createRadialGradient(p.cx,p.cy,p.r*0.6,p.cx,p.cy,p.r*2.2);
+    glow.addColorStop(0,`rgba(${p.color},0.08)`);
+    glow.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=glow;
+    ctx.beginPath();ctx.arc(p.cx,p.cy,p.r*2.2,0,Math.PI*2);ctx.fill();
+  }
+
+  function drawStars(tick){
+    for(const s of stars){
+      s.x=s.origX+Math.sin(tick*s.driftFreq+s.driftPhase)*s.driftAmp;
+      s.y=s.origY+Math.cos(tick*s.driftFreq*0.7+s.driftPhase)*s.driftAmp;
+      const flicker=0.5+0.5*Math.sin(tick*0.02+s.twinkle);
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r*flicker,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${s.o*flicker})`;
+      ctx.fill();
+    }
+  }
+
+  function spawnMeteor(){
+    const angle=Math.random()*0.6+0.15;
+    const fromRight=Math.random()>.5;
+    const startX=fromRight?c.width+Math.random()*200:-Math.random()*200;
+    const startY=Math.random()*c.height;
+    const len=Math.random()*100+80;
+    const speed=Math.random()*7+6;
+    meteors.push({
+      sx:startX, sy:startY,
+      dx:Math.cos(angle)*(fromRight?-speed:speed),
+      dy:Math.sin(angle)*speed,
+      life:Math.random()*0.25+0.4,
+      len,
+      maxLife:0.5+Math.random()*0.3
+    });
+  }
+
+  function updateMeteors(dt){
+    if(Math.random()<dt*0.08) spawnMeteor();
+    for(let i=meteors.length-1;i>=0;i--){
+      const m=meteors[i];
+      m.sx+=m.dx*dt*60; m.sy+=m.dy*dt*60;
+      m.life-=dt;
+      if(m.life>0.05&&Math.random()<0.5){
+        meteorTrails.push({x:m.sx,y:m.sy,life:0.3+Math.random()*0.4,maxLife:0.5,r:Math.random()*0.6+0.3});
+      }
+      if(m.life<=0) meteors.splice(i,1);
+    }
+    for(let i=meteorTrails.length-1;i>=0;i--){
+      meteorTrails[i].life-=dt;
+      if(meteorTrails[i].life<=0) meteorTrails.splice(i,1);
+    }
+    if(meteorTrails.length>60) meteorTrails.splice(0,meteorTrails.length-60);
+  }
+
+  function drawMeteors(){
+    for(const m of meteors){
+      const progress=1-(m.life/m.maxLife);
+      const alpha=progress<0.1?progress/0.1:progress>0.85?(1-progress)/0.15:1;
+      const hx=m.sx-m.dx*m.len; const hy=m.sy-m.dy*m.len;
+      const grd=ctx.createLinearGradient(m.sx,m.sy,hx,hy);
+      grd.addColorStop(0,`rgba(255,255,255,${alpha})`);
+      grd.addColorStop(0.15,`rgba(200,220,255,${alpha*0.7})`);
+      grd.addColorStop(1,'rgba(100,150,255,0)');
+      ctx.strokeStyle=grd;
+      ctx.lineWidth=1.8*alpha;
+      ctx.beginPath();ctx.moveTo(m.sx,m.sy);ctx.lineTo(hx,hy);ctx.stroke();
+      ctx.beginPath();ctx.arc(m.sx,m.sy,2.5*alpha,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${alpha})`;
+      ctx.fill();
+      ctx.beginPath();ctx.arc(m.sx,m.sy,6*alpha,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,210,255,${alpha*0.25})`;
+      ctx.fill();
+    }
+    for(const tr of meteorTrails){
+      const a=tr.life/tr.maxLife;
+      ctx.beginPath();ctx.arc(tr.x,tr.y,tr.r*a,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,210,255,${a*0.2})`;
+      ctx.fill();
+    }
+  }
+
+  function drawNebulae(tick){
+    for(const n of nebulae){
+      const nx=n.x+Math.sin(tick*n.driftX*2.5+n.y*0.005)*25;
+      const ny=n.y+Math.cos(tick*n.driftY*2.2+n.x*0.005)*25;
+      const grd=ctx.createRadialGradient(nx,ny,0,nx,ny,n.r);
+      grd.addColorStop(0,`rgba(${n.color},0.022)`);
+      grd.addColorStop(0.35,`rgba(${n.color},0.01)`);
+      grd.addColorStop(0.7,`rgba(${n.color},0.004)`);
+      grd.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=grd;
+      ctx.beginPath();ctx.arc(nx,ny,n.r,0,Math.PI*2);ctx.fill();
+    }
+  }
+
+  function drawConstellations(){
+    const brightStars=stars.filter(s=>s.o>0.4);
+    for(let i=0;i<brightStars.length;i+=4){
+      for(let j=i+1;j<brightStars.length;j+=4){
+        const dx=brightStars[i].x-brightStars[j].x;
+        const dy=brightStars[i].y-brightStars[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140&&d>30){
+          ctx.beginPath();
+          ctx.moveTo(brightStars[i].x,brightStars[i].y);
+          ctx.lineTo(brightStars[j].x,brightStars[j].y);
+          ctx.strokeStyle=`rgba(180,200,255,${0.035*(1-d/140)})`;
+          ctx.lineWidth=0.35;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function dr(){
+    const tick=Date.now()*0.001;
+    const dt=Math.min((tick-(dr._last||tick)),0.1);
+    dr._last=tick;
+    ctx.clearRect(0,0,c.width,c.height);
+    // Deep background: drifting nebulae
+    drawNebulae(tick);
+    // Stars with subtle drift + constellation network
+    drawStars(tick);
+    drawConstellations();
+    // Meteors with afterglow trails
+    updateMeteors(dt);
+    drawMeteors();
+    // Sun with dynamic flares
+    drawSun(tick);
+    // Planets
+    updatePlanets();
+    for(const p of planets) drawPlanet(p);
+    // Interstellar dust (gold near sun, blue elsewhere)
+    for(const p of ps){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<-20)p.x=c.width+20;if(p.x>c.width+20)p.x=-20;
+      if(p.y<-20)p.y=c.height+20;if(p.y>c.height+20)p.y=-20;
+      const dx=m.x-p.x,dy=m.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<160){const f=(1-d/160)*.4;p.vx-=(dx/d)*f*.015;p.vy-=(dy/d)*f*.015}
+      p.vx*=.999;p.vy*=.999;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.color},${p.o})`;ctx.fill();
+    }
+    // Connections
+    for(let i=0;i<Math.min(ps.length,60);i++){
+      for(let j=i+1;j<Math.min(ps.length,60);j++){
+        const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<100){ctx.beginPath();ctx.moveTo(ps[i].x,ps[i].y);ctx.lineTo(ps[j].x,ps[j].y);ctx.strokeStyle=`rgba(150,185,235,${.04*(1-d/100)})`;ctx.lineWidth=.3;ctx.stroke()}
+      }
+    }
+    aid=requestAnimationFrame(dr);
+  }
+  document.addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+  window.addEventListener('resize',rs);rs();
+})();
+
+// ── Light Sweep ──
+document.querySelectorAll('.light-sweep').forEach(el=>{
+  el.addEventListener('mousemove',function(e){
+    const r=el.getBoundingClientRect();
+    el.style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%');
+    el.style.setProperty('--sy',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+// ── Ambient Orbs ──
+(function(){
+  const obs=document.querySelectorAll('.amb');
+  document.addEventListener('mousemove',function(e){
+    const x=(e.clientX/window.innerWidth-.5)*50;
+    const y=(e.clientY/window.innerHeight-.5)*50;
+    obs[0].style.transform=`translate(${x*.5}px,${y*.5}px)`;
+    obs[1].style.transform=`translate(${-x*.35}px,${-y*.35}px)`;
+    obs[2].style.transform=`translate(${x*.25}px,${-y*.25}px)`;
+  });
+})();
+
+// ── Reveal Observer ──
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target)}});
+  },{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal,.reveal-stagger').forEach(el=>obs.observe(el));
+})();
+
+// ── Sidebar Active Tracking ──
+(function(){
+  const secs=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('#sideNav a');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const m=document.querySelector(`#sideNav a[href="#${e.target.id}"]`);
+        if(m)m.classList.add('active');
+      }
+    });
+  },{threshold:0.4,rootMargin:'-60px 0px -30% 0px'});
+  secs.forEach(s=>obs.observe(s));
+})();
+</script>
+</body>
+</html>
