@@ -354,6 +354,83 @@ body {
   border: 1px solid oklch(68% 0.22 var(--hue) / 0.1);
 }
 
+/* ── Certificates ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+.cert-card {
+  padding: clamp(14px, 1.8vw, 20px);
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out-quart), box-shadow 0.4s var(--ease-out-quart);
+}
+.cert-card:hover {
+  transform: translateY(-4px);
+}
+.cert-card .cert-img-wrap {
+  width: 100%;
+  aspect-ratio: 1.414 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  background: oklch(100% 0 0 / 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-card .cert-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-out-quart);
+}
+.cert-card:hover .cert-img-wrap img {
+  transform: scale(1.06);
+}
+.cert-card .cert-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.cert-card .cert-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+/* cert modal */
+.cert-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: oklch(0% 0 0 / 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.cert-modal.active { display: flex; }
+.cert-modal img {
+  max-width: 90vw; max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 60px oklch(0% 0 0 / 0.7);
+  object-fit: contain;
+}
+.cert-modal .cert-modal-close {
+  position: absolute; top: 24px; right: 32px;
+  font-size: 2rem; color: var(--text-primary);
+  cursor: pointer; z-index: 1000;
+  width: 44px; height: 44px; display: flex;
+  align-items: center; justify-content: center;
+  border-radius: 50%; background: oklch(100% 0 0 / 0.1);
+  transition: background 0.3s;
+}
+.cert-modal .cert-modal-close:hover {
+  background: oklch(100% 0 0 / 0.2);
+}
+
 /* ── Awards ── */
 .awards-grid {
   display: grid;
@@ -494,6 +571,7 @@ body {
       <li><a href="#projects"><span class="nav-dot"></span> 项目经验</a></li>
       <li><a href="#awards"><span class="nav-dot"></span> 获奖荣誉</a></li>
       <li><a href="#skills"><span class="nav-dot"></span> 技能特长</a></li>
+      <li><a href="#certificates"><span class="nav-dot"></span> 证书</a></li>
       <li><a href="#contact"><span class="nav-dot"></span> 联系方式</a></li>
     </ul>
   </nav>
@@ -813,6 +891,32 @@ body {
     </div>
   </section>
 
+  <!-- Certificates -->
+  <section class="section" id="certificates">
+    <div class="section-inner">
+      <div class="section-label">// Certificates</div>
+      <h2 class="section-heading">证书</h2>
+      <div class="cert-grid reveal-stagger">
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/人工智能计算机视觉架构师中级电子版证书.jpeg" alt="人工智能计算机视觉架构师中级" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">人工智能计算机视觉架构师（中级）</div>
+          <div class="cert-date">2024.03</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/大数据开发证书.png" alt="大数据开发证书" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">大数据应用开发（Java）职业技能等级证书（中级）</div>
+          <div class="cert-date">2024.07</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/第十九届浙江省大学生电子商务竞赛二等奖.jpg" alt="第十九届浙江省大学生电子商务竞赛二等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">第十九届浙江省大学生电子商务竞赛二等奖</div>
+          <div class="cert-date">2024.07</div>
+        </div>
+      </div>
+      <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="section" id="contact">
     <div class="section-inner">
@@ -827,6 +931,12 @@ body {
     </div>
   </section>
 
+</div>
+
+<!-- Certificate Modal -->
+<div class="cert-modal" id="certModal" onclick="closeCertModal()">
+  <span class="cert-modal-close" onclick="closeCertModal()">&times;</span>
+  <img id="certModalImg" src="" alt="证书放大图">
 </div>
 
 <script>
@@ -1187,6 +1297,82 @@ document.querySelectorAll('.light-sweep').forEach(el=>{
     });
   },{threshold:0.4,rootMargin:'-60px 0px -30% 0px'});
   secs.forEach(s=>obs.observe(s));
+})();
+
+// ── Certificate Modal ──
+function openCertModal(src) {
+  const modal = document.getElementById('certModal');
+  const img = document.getElementById('certModalImg');
+  img.src = src;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCertModal() {
+  const modal = document.getElementById('certModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeCertModal();
+});
+
+// ── Edit Mode Toggle ──
+(function() {
+  const editBtn = document.createElement('button');
+  editBtn.textContent = '编辑模式';
+  editBtn.id = 'editModeToggle';
+  editBtn.style.cssText = `
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    padding: 8px 18px; border-radius: 100px; border: 1px solid oklch(100% 0 0 / 0.18);
+    background: oklch(9% 0.015 var(--hue) / 0.85); color: var(--text-secondary);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.04em;
+    transition: all 0.35s var(--ease-out-quart);
+  `;
+  editBtn.addEventListener('mouseenter', function() {
+    this.style.borderColor = 'var(--accent)';
+    this.style.color = 'var(--accent)';
+    this.style.boxShadow = '0 0 20px oklch(68% 0.22 var(--hue) / 0.2)';
+  });
+  editBtn.addEventListener('mouseleave', function() {
+    if (!this.classList.contains('active')) {
+      this.style.borderColor = 'oklch(100% 0 0 / 0.18)';
+      this.style.color = 'var(--text-secondary)';
+      this.style.boxShadow = 'none';
+    }
+  });
+  let editMode = false;
+  editBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    editMode = !editMode;
+    if (editMode) {
+      this.textContent = '退出编辑';
+      this.classList.add('active');
+      this.style.borderColor = 'var(--accent)';
+      this.style.color = 'var(--accent)';
+      this.style.boxShadow = '0 0 20px oklch(68% 0.22 var(--hue) / 0.2)';
+    } else {
+      this.textContent = '编辑模式';
+      this.classList.remove('active');
+      this.style.borderColor = 'oklch(100% 0 0 / 0.18)';
+      this.style.color = 'var(--text-secondary)';
+      this.style.boxShadow = 'none';
+    }
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.contentEditable = editMode;
+      if (editMode) {
+        el.style.outline = '1px dashed oklch(68% 0.22 var(--hue) / 0.4)';
+        el.style.borderRadius = '4px';
+        el.style.padding = '2px 6px';
+      } else {
+        el.style.outline = '';
+        el.style.borderRadius = '';
+        el.style.padding = '';
+      }
+    });
+  });
+  document.body.appendChild(editBtn);
 })();
 </script>
 </body>
