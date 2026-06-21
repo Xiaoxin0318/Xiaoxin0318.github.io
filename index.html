@@ -432,6 +432,26 @@ body {
   background: oklch(100% 0 0 / 0.2);
 }
 
+/* ── Cert Fullwidth Breakout ── */
+.cert-fullwidth {
+  margin-left: var(--sidebar-w);
+  width: calc(100vw - var(--sidebar-w));
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+.cert-separator {
+  width: 100%;
+  margin: clamp(36px, 4.5vw, 52px) 0 clamp(14px, 2vw, 22px);
+  border-top: 1px solid var(--glass-border);
+  padding-top: clamp(16px, 2vw, 24px);
+}
+.cert-separator h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.02em;
+}
+
 /* ── Awards ── */
 .awards-grid {
   display: grid;
@@ -897,6 +917,8 @@ body {
     <div class="section-inner">
       <div class="section-label">// Certificates</div>
       <h2 class="section-heading">证书</h2>
+    </div>
+    <div class="cert-fullwidth">
       <div class="cert-grid reveal-stagger">
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
           <div class="cert-img-wrap"><img src="img/certificate/人工智能计算机视觉架构师中级电子版证书.webp" alt="人工智能计算机视觉架构师中级" loading="lazy"></div>
@@ -913,6 +935,51 @@ body {
           <div class="cert-name" contenteditable="true">第十九届浙江省大学生电子商务竞赛二等奖</div>
           <div class="cert-date">2024.07</div>
         </div>
+      </div>
+
+      <div class="cert-separator"><h3>计算机软件著作权</h3></div>
+
+      <div class="cert-grid reveal-stagger">
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游世纪VR虚拟交互平台V1.0.0.webp" alt="畅游世纪VR虚拟交互平台" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">畅游世纪VR虚拟交互平台 V1.0.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游未来OS桌面交互系统V1.0.0.webp" alt="畅游未来OS桌面交互系统" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">畅游未来OS桌面交互系统 V1.0.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游虚拟飞行模拟运行软件V1.0.0.webp" alt="畅游虚拟飞行模拟运行软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">畅游虚拟飞行模拟运行软件 V1.0.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/大棚种植管理系统V1.0.0.webp" alt="大棚种植管理系统" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">大棚种植管理系统 V1.0.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/数媒教学专用计时器软件V1.0.webp" alt="数媒教学专用计时器软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">数媒教学专用计时器软件 V1.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/校园生活模拟器软件V1.0.2.webp" alt="校园生活模拟器软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">校园生活模拟器软件 V1.0.2</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/遇上湖职AR软件V1.5.0.webp" alt="遇上湖职AR软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">遇上湖职AR软件 V1.5.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+      </div>
+
+      <div class="cert-separator"><h3>荣获</h3></div>
+
+      <div class="cert-grid reveal-stagger">
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
           <div class="cert-img-wrap"><img src="img/certificate/奖项证书/2022年湖州职业技术学院物流与信息工程学院虚拟现实VR设计与制作竞赛模型设计组一等奖.webp" alt="VR设计与制作竞赛模型设计组一等奖" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">VR设计与制作竞赛模型设计组一等奖</div>
@@ -1018,42 +1085,8 @@ body {
           <div class="cert-name" contenteditable="true">挑战杯创业计划竞赛校级决赛一等奖</div>
           <div class="cert-date">2023</div>
         </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游世纪VR虚拟交互平台V1.0.0.webp" alt="畅游世纪VR虚拟交互平台" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">畅游世纪VR虚拟交互平台 V1.0.0</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游未来OS桌面交互系统V1.0.0.webp" alt="畅游未来OS桌面交互系统" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">畅游未来OS桌面交互系统 V1.0.0</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游虚拟飞行模拟运行软件V1.0.0.webp" alt="畅游虚拟飞行模拟运行软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">畅游虚拟飞行模拟运行软件 V1.0.0</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/大棚种植管理系统V1.0.0.webp" alt="大棚种植管理系统" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">大棚种植管理系统 V1.0.0</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/数媒教学专用计时器软件V1.0.webp" alt="数媒教学专用计时器软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">数媒教学专用计时器软件 V1.0</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/校园生活模拟器软件V1.0.2.webp" alt="校园生活模拟器软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">校园生活模拟器软件 V1.0.2</div>
-          <div class="cert-date">2023</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/遇上湖职AR软件V1.5.0.webp" alt="遇上湖职AR软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">遇上湖职AR软件 V1.5.0</div>
-          <div class="cert-date">2023</div>
-        </div>
       </div>
+
       <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
     </div>
   </section>
