@@ -356,12 +356,13 @@ body {
 
 /* ── Certificates ── */
 .cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: clamp(14px, 2vw, 22px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.5vw, 16px);
 }
 .cert-card {
-  padding: clamp(14px, 1.8vw, 20px);
+  flex: 0 1 220px;
+  padding: clamp(12px, 1.6vw, 18px);
   cursor: pointer;
   transition: transform 0.4s var(--ease-out-quart), box-shadow 0.4s var(--ease-out-quart);
 }
@@ -896,170 +897,161 @@ body {
     <div class="section-inner">
       <div class="section-label">// Certificates</div>
       <h2 class="section-heading">证书</h2>
-      <!-- 职业资质证书 -->
       <div class="cert-grid reveal-stagger">
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/人工智能计算机视觉架构师中级电子版证书.jpeg" alt="人工智能计算机视觉架构师中级" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/人工智能计算机视觉架构师中级电子版证书.webp" alt="人工智能计算机视觉架构师中级" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">人工智能计算机视觉架构师（中级）</div>
           <div class="cert-date">2024.03</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/大数据开发证书.png" alt="大数据开发证书" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/大数据开发证书.webp" alt="大数据开发证书" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">大数据应用开发（Java）职业技能等级证书（中级）</div>
           <div class="cert-date">2024.07</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/第十九届浙江省大学生电子商务竞赛二等奖.jpg" alt="第十九届浙江省大学生电子商务竞赛二等奖" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/第十九届浙江省大学生电子商务竞赛二等奖.webp" alt="第十九届浙江省大学生电子商务竞赛二等奖" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">第十九届浙江省大学生电子商务竞赛二等奖</div>
           <div class="cert-date">2024.07</div>
         </div>
-      </div>
-      <!-- 奖项证书 -->
-      <h3 style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:600;margin:clamp(24px,3vw,36px) 0 clamp(12px,2vw,18px);color:var(--text-secondary);letter-spacing:-0.02em;">奖项证书</h3>
-      <div class="cert-grid reveal-stagger">
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/1.jpg" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">浙江省大学生电子商务竞赛获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/2022年湖州职业技术学院物流与信息工程学院虚拟现实VR设计与制作竞赛模型设计组一等奖.webp" alt="VR设计与制作竞赛模型设计组一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">VR设计与制作竞赛模型设计组一等奖</div>
+          <div class="cert-date">2022</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/111111111.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/2023年浙江省高职院校技能大赛虚拟现实VR设计与制作赛项二等奖.webp" alt="VR设计与制作赛项二等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">浙江省高职院校技能大赛VR设计与制作赛项二等奖</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/3.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/创新创业之星荣誉.webp" alt="创新创业之星" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">创新创业之星</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/4444444.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/创新创业之星荣誉_2.webp" alt="创新创业之星" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">创新创业之星</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/44444444444444.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/第十八届挑战杯大学生课外学术科技作品校内选拔赛一等奖.webp" alt="挑战杯校内选拔赛一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">第十八届挑战杯校内选拔赛一等奖</div>
+          <div class="cert-date">2022</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/4634887483.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/短视频创作与运营一等奖.webp" alt="短视频创作与运营一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">短视频创作与运营一等奖</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/777777.png" alt="获奖证书" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/发明专利.png" alt="发明专利证书" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/发明专利.webp" alt="发明专利" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">发明专利证书</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/商业精英挑战赛全国一等奖.png" alt="商业精英挑战赛全国一等奖" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/湖州职业技术学院2022年互联网+大学生创新创业大赛二等奖.webp" alt="互联网+创新创业大赛二等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">2022年互联网+创新创业大赛二等奖</div>
+          <div class="cert-date">2022</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/湖州职业技术学院2023年互联网+大学生创新创业大赛一等奖.webp" alt="互联网+创新创业大赛一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">2023年互联网+创新创业大赛一等奖</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/建行杯第九届浙江省国际互联网+大学生创新创业大赛银奖.webp" alt="互联网+创新创业大赛银奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">第九届浙江省国际互联网+创新创业大赛银奖</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/农行杯第十八届浙江省大学生电子商务竞赛（常规赛）专科组一等奖.webp" alt="大学生电子商务竞赛一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">第十八届浙江省大学生电子商务竞赛一等奖</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/全民反诈让诈骗无所遁形反诈创意短视频大赛优秀奖.webp" alt="反诈创意短视频大赛优秀奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">全民反诈创意短视频大赛优秀奖</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/商业精英挑战赛全国一等奖.webp" alt="商业精英挑战赛全国一等奖" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">商业精英挑战赛全国一等奖</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110162918.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110162918</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/五四奖章.webp" alt="五四奖章" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">青年五四奖章</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110162929.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110162929</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/一等奖.webp" alt="一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">一等奖</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110163010.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110163010</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/一等奖学金.webp" alt="一等奖学金" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">一等奖学金</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110163624.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110163624</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/营业执照.webp" alt="营业执照" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">营业执照</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110163948.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110163948</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/优秀学生干荣誉称号.webp" alt="优秀学生干部" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">优秀学生干部荣誉称号</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164525.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164525</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/优秀学生荣誉称号.webp" alt="优秀学生" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">优秀学生荣誉称号</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164535.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164535</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/浙江省第十八届挑战杯工商银行大学生课外学术科技作品竞赛铜奖.webp" alt="挑战杯铜奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">浙江省第十八届挑战杯铜奖</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164543.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164543</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/浙江省第十三届挑战杯大学生创业计划竞赛校级决赛一等奖.webp" alt="挑战杯创业计划竞赛一等奖" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">挑战杯创业计划竞赛校级决赛一等奖</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164552.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164552</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164558.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164558</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164606.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164606</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/奖项证书/微信截图_20231110164616.png" alt="获奖证书截图" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">获奖证书截图 20231110164616</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-      </div>
-      <!-- 计算机软件著作权 -->
-      <h3 style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:600;margin:clamp(24px,3vw,36px) 0 clamp(12px,2vw,18px);color:var(--text-secondary);letter-spacing:-0.02em;">计算机软件著作权</h3>
-      <div class="cert-grid reveal-stagger">
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/大棚种植管理系统V1.0.0.png" alt="大棚种植管理系统" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">大棚种植管理系统 V1.0.0</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/数媒教学专用计时器软件V1.0.png" alt="数媒教学专用计时器软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">数媒教学专用计时器软件 V1.0</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/校园生活模拟器软件V1.0.2.png" alt="校园生活模拟器软件" loading="lazy"></div>
-          <div class="cert-name" contenteditable="true">校园生活模拟器软件 V1.0.2</div>
-          <div class="cert-date">2023.11</div>
-        </div>
-        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游世纪VR虚拟交互平台V1.0.0.png" alt="畅游世纪VR虚拟交互平台" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游世纪VR虚拟交互平台V1.0.0.webp" alt="畅游世纪VR虚拟交互平台" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">畅游世纪VR虚拟交互平台 V1.0.0</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游未来OS桌面交互系统V1.0.0.png" alt="畅游未来OS桌面交互系统" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游未来OS桌面交互系统V1.0.0.webp" alt="畅游未来OS桌面交互系统" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">畅游未来OS桌面交互系统 V1.0.0</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游虚拟飞行模拟运行软件V1.0.0.png" alt="畅游虚拟飞行模拟运行软件" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/畅游虚拟飞行模拟运行软件V1.0.0.webp" alt="畅游虚拟飞行模拟运行软件" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">畅游虚拟飞行模拟运行软件 V1.0.0</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
         <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
-          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/遇上湖职AR软件V1.5.0.png" alt="遇上湖职AR软件" loading="lazy"></div>
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/大棚种植管理系统V1.0.0.webp" alt="大棚种植管理系统" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">大棚种植管理系统 V1.0.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/数媒教学专用计时器软件V1.0.webp" alt="数媒教学专用计时器软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">数媒教学专用计时器软件 V1.0</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/校园生活模拟器软件V1.0.2.webp" alt="校园生活模拟器软件" loading="lazy"></div>
+          <div class="cert-name" contenteditable="true">校园生活模拟器软件 V1.0.2</div>
+          <div class="cert-date">2023</div>
+        </div>
+        <div class="cert-card glass light-sweep" onclick="openCertModal(this.querySelector('img').src)">
+          <div class="cert-img-wrap"><img src="img/certificate/计算机软件著作权/遇上湖职AR软件V1.5.0.webp" alt="遇上湖职AR软件" loading="lazy"></div>
           <div class="cert-name" contenteditable="true">遇上湖职AR软件 V1.5.0</div>
-          <div class="cert-date">2023.11</div>
+          <div class="cert-date">2023</div>
         </div>
       </div>
       <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
