@@ -176,6 +176,12 @@ body {
   padding: clamp(40px, 5vw, 80px) clamp(20px, 4vw, 60px);
 }
 
+/* about section: left-aligned, vertically centered */
+#about {
+  align-items: flex-start;
+  justify-content: center;
+}
+
 /* ── Glass Card ── */
 .glass {
   background: var(--glass-bg);
@@ -635,7 +641,7 @@ body {
         <div class="hero-stat"><div class="val">15</div><div class="lbl">项软件著作权</div></div>
         <div class="hero-stat"><div class="val">3年</div><div class="lbl">工作经验</div></div>
       </div>
-      <a href="https://blog.csdn.net/qq_33502371?type=blog" target="_blank" rel="noopener" class="hero-link">CSDN 10年 个人博客</a>
+      <a href="https://blog.csdn.net/qq_33502371?type=blog" target="_blank" rel="noopener" class="hero-link">CSDN <span class="csdn-years">10</span>年 个人博客</a>
       <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
     </div>
   </section>
@@ -722,7 +728,7 @@ body {
           <div class="tl-role">Unity 应用开发</div>
           <div class="tl-org">湖州畅游科技有限公司</div>
           <div class="tl-desc">
-            主力开发《浙韵千宿·灵境》《普陀湖笔模拟书写VR》《湖院录取通知证书AR》等项目，参与模型设计与制作。CSDN平台拥有<strong>10年码龄</strong>账号，个人拥有<strong>15项计算机软件著作权</strong>。
+            主力开发《浙韵千宿·灵境》《普陀湖笔模拟书写VR》《湖院录取通知证书AR》等项目，参与模型设计与制作。CSDN平台拥有<strong class="csdn-years">10</strong>年码龄账号，个人拥有<strong>15项计算机软件著作权</strong>。
           </div>
         </div>
       </div>
@@ -923,7 +929,7 @@ body {
             <li>大数据应用开发（Java）职业技能等级证书（中级）</li>
             <li>计算机视觉架构师（中级）</li>
             <li>15 项计算机软件著作权</li>
-            <li>CSDN 平台 10 年码龄</li>
+            <li>CSDN 平台 <span class="csdn-years">10</span> 年码龄</li>
           </ul>
         </div>
       </div>
@@ -1566,6 +1572,17 @@ document.addEventListener('keydown', function(e) {
     });
   });
   document.body.appendChild(editBtn);
+})();
+
+/* ── CSDN 年限自动计算 ── */
+(function() {
+  const start = new Date('2015-12-25');
+  const now = new Date();
+  let years = now.getFullYear() - start.getFullYear();
+  const m = now.getMonth() - start.getMonth();
+  const d = now.getDate() - start.getDate();
+  if (m < 0 || (m === 0 && d < 0)) years--;
+  document.querySelectorAll('.csdn-years').forEach(el => { el.textContent = years; });
 })();
 </script>
 </body>
