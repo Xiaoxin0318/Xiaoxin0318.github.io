@@ -266,6 +266,21 @@ body {
   font-size: 0.72rem; color: var(--text-muted);
   margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase;
 }
+.hero-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 600;
+  color: var(--accent); text-decoration: none;
+  border: 1px solid oklch(68% 0.22 var(--hue) / 0.2);
+  border-radius: 100px; padding: 6px 18px;
+  background: oklch(68% 0.22 var(--hue) / 0.06);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s, border-color 0.3s;
+}
+.hero-link:hover {
+  background: oklch(68% 0.22 var(--hue) / 0.14);
+  border-color: oklch(68% 0.22 var(--hue) / 0.4);
+}
 
 /* ── Resume Card ── */
 .resume-card {
@@ -620,6 +635,7 @@ body {
         <div class="hero-stat"><div class="val">15</div><div class="lbl">项软件著作权</div></div>
         <div class="hero-stat"><div class="val">3年</div><div class="lbl">工作经验</div></div>
       </div>
+      <a href="https://blog.csdn.net/qq_33502371?type=blog" target="_blank" rel="noopener" class="hero-link">CSDN 10年 个人博客</a>
       <div class="scroll-hint"><span>下滑浏览</span><span class="arrow">&#8595;</span></div>
     </div>
   </section>
